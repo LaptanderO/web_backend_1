@@ -11,9 +11,9 @@ function validate() {
     $full_name = trim($data['full_name'] ?? '');
     if (empty($full_name)) {
         $errors[] = 'Поле ФИО обязательно';
-    } elseif (mb_strlen($full_name) > 150) {
+    } elseif (strlen($full_name) > 150) {
         $errors[] = 'ФИО не должно превышать 150 символов';
-    } elseif (!preg_match('/^[а-яА-ЯёЁa-zA-Z\s-]+$/u', $full_name)) {
+    } elseif (!preg_match('/^[a-zA-Zа-яА-ЯёЁ\s-]+$/', $full_name)) {
         $errors[] = 'ФИО должно содержать только буквы, пробелы и дефисы';
     }
     
@@ -21,7 +21,7 @@ function validate() {
     $phone = trim($data['phone'] ?? '');
     if (empty($phone)) {
         $errors[] = 'Поле Телефон обязательно';
-    } elseif (!preg_match('/^[\+\-\s\(\)0-9]{10,20}$/', $phone)) {
+    } elseif (!preg_match('/^[+\-\s\(\)0-9]{10,20}$/', $phone)) {
         $errors[] = 'Телефон содержит недопустимые символы';
     }
     
@@ -50,12 +50,10 @@ function validate() {
         $errors[] = 'Некорректное значение пола';
     }
     
-    // Языки
     $languages = $data['languages'] ?? [];
     if (empty($languages)) {
         $errors[] = 'Выберите хотя бы один язык программирования';
     } else {
-        // Проверяем, что все ID существуют
         global $pdo;
         $placeholders = implode(',', array_fill(0, count($languages), '?'));
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM languages WHERE id IN ($placeholders)");

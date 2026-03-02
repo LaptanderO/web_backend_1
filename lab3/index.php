@@ -73,7 +73,7 @@ unset($_SESSION['errors'], $_SESSION['success'], $_SESSION['old']);
                 <?php
                 $user = 'ваш_логин';
                 $pass = 'ваш_пароль';
-                $db = new PDO("mysql:host=localhost;dbname=$user", $user, $pass);
+                $db = new PDO("mysql:host=localhost;dbname=$user;charset=utf8mb4", $user, $pass);
                 
                 $stmt = $db->query("SELECT id, name FROM languages ORDER BY name");
                 $all_languages = $stmt->fetchAll();
