@@ -1,109 +1,122 @@
 <?php
 // index.php
-session_start();
-$errors = $_SESSION['errors'] ?? [];
-$success = $_SESSION['success'] ?? '';
-$old = $_SESSION['old'] ?? [];
+require_once 'config.php';
 
-unset($_SESSION['errors'], $_SESSION['success'], $_SESSION['old']);
+header('Content-Type: text/html; charset=UTF-8');
+$error_message = '';
+$success_message = '';
+$old_data = [];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+    $errors = [];
+    
+    $full_name = trim($_POST['full_name'] ?? '');
+    if (empty($full_name)) {
+        $errors[] = 'Поле ФИО обязательно';
+    } elseif (strlen($full_name) > 150) {
+        $errors[] = 'ФИО не должно превышать 150 символов';
+    } elseif (!preg_match('/^[a-zA-Zа-яА-ЯёЁ\s-]+$/', $full_name)) {
+        $errors[] = 'ФИО должно содержать только буквы, пробелы и дефисы';
+    }
+    
+    $phone = trim($_POST['phone'] ?? '');
+    if (empty($phone)) {
+        $errors[] = 'Поле Телефон обязательно';
+    } elseif (!preg_match('/^[+\-\s\(\)0-9]{10,20}$/', $phone)) {
+        $errors[] = 'Телефон содержит недопустимые символы';
+    }
+    
+    $email = trim($_POST['email'] ?? '');
+    if (empty($email)) {
+        $errors[] = 'Поле Email обязательно';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = 'Некорректный формат email';
+    }
+    
+    $birth_date = $_POST['birth_date'] ?? '';
+    if (empty($birth_date)) {
+        $errors[] = 'Поле Дата рождения обязательно';
+    } else {
+        $d = DateTime::createFromFormat('Y-m-d', $birth_date);
+        if (!$d || $d->format('Y-m-d') !== $birth_date) {
+            $errors[] = 'Некорректный формат даты';
+        }
+    }
+    
+    $gender = $_POST['gender'] ?? '';
+    if (!in_array($gender, ['male', 'female'])) {
+        $errors[] = 'Некорректное значение пола';
+    }
+    
+    $languages = $_POST['languages'] ?? [];
+    if (empty($languages)) {
+        $errors[] = 'Выберите хотя бы один язык программирования';
+    } else {
+        $placeholders = implode(',', array_fill(0, count($languages), '?'));
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM languages WHERE id IN ($placeholders)");
+        $stmt->execute($languages);
+        if ($stmt->fetchColumn() != count($languages)) {
+            $errors[] = 'Обнаружен недопустимый язык программирования';
+        }
+    }
+
+    $biography = trim($_POST['biography'] ?? '');
+    if (empty($biography)) {
+        $errors[] = 'Поле Биография обязательно';
+    }
+    
+    $agreed = isset($_POST['agreed']) && $_POST['agreed'] == '1';
+    if (!$agreed) {
+        $errors[] = 'Необходимо подтвердить ознакомление с контрактом';
+    }
+    
+    if (!empty($errors)) {
+        $error_message = implode('<br>', $errors);
+        $old_data = $_POST; 
+    } else {
+        try {
+            $pdo->beginTransaction();
+            
+            $stmt = $pdo->prepare("
+                INSERT INTO applications (full_name, phone, email, birth_date, gender, biography, agreed)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            ");
+            $stmt->execute([
+                $full_name,
+                $phone,
+                $email,
+                $birth_date,
+                $gender,
+                $biography,
+                $agreed ? 1 : 0
+            ]);
+            
+            $applicationId = $pdo->lastInsertId();
+            
+            $stmt = $pdo->prepare("INSERT INTO application_languages (application_id, language_id) VALUES (?, ?)");
+            foreach ($languages as $langId) {
+                $stmt->execute([$applicationId, $langId]);
+            }
+            
+            $pdo->commit();
+            
+            header('Location: index.php?save=1');
+            exit;
+            
+        } catch (PDOException $e) {
+            $pdo->rollBack();
+            $error_message = 'Ошибка базы данных: ' . $e->getMessage();
+            $old_data = $_POST;
+        }
+    }
+}
+
+if (isset($_GET['save']) && $_GET['save'] == '1') {
+    $success_message = 'Спасибо, результаты сохранены.';
+}
+
+include('form.php');
 ?>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Анкета</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Заполните анкету</h1>
 
-        <?php if (!empty($errors)): ?>
-            <div class="error-box">
-                <ul>
-                    <?php foreach ($errors as $error): ?>
-                        <li><?= htmlspecialchars($error) ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
 
-        <?php if ($success): ?>
-            <div class="success-box">
-                <?= htmlspecialchars($success) ?>
-            </div>
-        <?php endif; ?>
-
-        <form action="submit.php" method="POST">
-            <!-- 1. ФИО -->
-            <label for="full_name">ФИО:</label>
-            <input type="text" id="full_name" name="full_name" 
-                   value="<?= htmlspecialchars($old['full_name'] ?? '') ?>" required>
-
-            <!-- 2. Телефон -->
-            <label for="phone">Телефон:</label>
-            <input type="tel" id="phone" name="phone" 
-                   value="<?= htmlspecialchars($old['phone'] ?? '') ?>" required>
-
-            <!-- 3. Email -->
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" 
-                   value="<?= htmlspecialchars($old['email'] ?? '') ?>" required>
-
-            <!-- 4. Дата рождения -->
-            <label for="birth_date">Дата рождения:</label>
-            <input type="date" id="birth_date" name="birth_date" 
-                   value="<?= htmlspecialchars($old['birth_date'] ?? '') ?>" required>
-
-            <!-- 5. Пол -->
-            <label>Пол:</label>
-            <div class="radio-group">
-                <input type="radio" id="male" name="gender" value="male" 
-                       <?= (isset($old['gender']) && $old['gender'] == 'male') ? 'checked' : '' ?> required>
-                <label for="male">Мужской</label>
-                
-                <input type="radio" id="female" name="gender" value="female" 
-                       <?= (isset($old['gender']) && $old['gender'] == 'female') ? 'checked' : '' ?> required>
-                <label for="female">Женский</label>
-            </div>
-
-            <!-- 6. Любимые ЯП  -->
-            <label for="languages">Любимые языки программирования:</label>
-            <select name="languages[]" id="languages" multiple required>
-                <?php
-                $user = 'ваш_логин';
-                $pass = 'ваш_пароль';
-                $db = new PDO("mysql:host=localhost;dbname=$user;charset=utf8mb4", $user, $pass);
-                
-                $stmt = $db->query("SELECT id, name FROM languages ORDER BY name");
-                $all_languages = $stmt->fetchAll();
-                $old_langs = $old['languages'] ?? [];
-                
-                foreach ($all_languages as $lang):
-                    $selected = in_array($lang['id'], $old_langs) ? 'selected' : '';
-                ?>
-                    <option value="<?= $lang['id'] ?>" <?= $selected ?>>
-                        <?= htmlspecialchars($lang['name']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-
-            <!-- 7. Биография -->
-            <label for="biography">Биография:</label>
-            <textarea id="biography" name="biography" rows="5" required><?= 
-                htmlspecialchars($old['biography'] ?? '') 
-            ?></textarea>
-
-            <!-- 8. Чекбокс согласия -->
-            <div class="checkbox-group">
-                <input type="checkbox" id="agreed" name="agreed" value="1" 
-                       <?= (isset($old['agreed']) && $old['agreed'] == '1') ? 'checked' : '' ?> required>
-                <label for="agreed">С контрактом ознакомлен(а)</label>
-            </div>
-
-            <!-- 9. Кнопка -->
-            <button type="submit">Сохранить</button>
-        </form>
-    </div>
-</body>
-</html>
