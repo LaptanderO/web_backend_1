@@ -91,7 +91,7 @@
 
             <!-- 7. Биография -->
             <label for="biography">Биография:</label>
-            <textarea id="biography" name="biography" rows="5" <?= !empty($errors['biography']) ? 'class="error"' ?>><?= 
+            <textarea id="biography" name="biography" rows="5" <?= !empty($errors['biography']) ? 'class="error"' : '' ?>><?= 
                 htmlspecialchars($values['biography'] ?? '') 
             ?></textarea>
             <?php if (!empty($errors['biography'])): ?>
