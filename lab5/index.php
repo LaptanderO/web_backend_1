@@ -7,6 +7,7 @@ header('Content-Type: text/html; charset=UTF-8');
 $is_authorized = false;
 $user_data = null;
 
+
 if (!empty($_COOKIE[session_name()])) {
     session_start();
     if (!empty($_SESSION['login']) && !empty($_SESSION['uid'])) {
