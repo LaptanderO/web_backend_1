@@ -4,24 +4,21 @@ require_once 'config.php';
 
 header('Content-Type: text/html; charset=UTF-8');
 
+session_start();
 $is_authorized = false;
 $user_data = null;
 
-
-if (!empty($_COOKIE[session_name()])) {
-    session_start();
-    if (!empty($_SESSION['login']) && !empty($_SESSION['uid'])) {
-        $is_authorized = true;
-        
-        $stmt = $pdo->prepare("
-            SELECT a.*, u.login 
-            FROM applications a 
-            JOIN users u ON u.application_id = a.id 
-            WHERE u.id = ?
-        ");
-        $stmt->execute([$_SESSION['uid']]);
-        $user_data = $stmt->fetch();
-    }
+if (!empty($_SESSION['login']) && !empty($_SESSION['uid'])) {
+    $is_authorized = true;
+     
+    $stmt = $pdo->prepare("
+        SELECT a.*, u.login 
+        FROM applications a 
+        JOIN users u ON u.application_id = a.id 
+        WHERE u.id = ?
+    ");
+    $stmt->execute([$_SESSION['uid']]);
+    $user_data = $stmt->fetch();
 }
 
 $messages = [];
