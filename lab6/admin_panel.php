@@ -1,133 +1,135 @@
 <?php
-// admin_panel.php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require_once __DIR__ . '/admin_auth.php';
 
 $admin = authenticateAdmin($pdo);
 
-$message = $_GET['message'] ?? '';
-$error = $_GET['error'] ?? '';
-
-$stmt = $pdo->query("
-    SELECT a.*, 
-           GROUP_CONCAT(l.name ORDER BY l.name SEPARATOR ', ') as languages_list,
-           u.login as user_login
-    FROM applications a
-    LEFT JOIN application_languages al ON a.id = al.application_id
-    LEFT JOIN languages l ON al.language_id = l.id
-    LEFT JOIN users u ON u.application_id = a.id
-    GROUP BY a.id
-    ORDER BY a.created_at DESC
-");
-$applications = $stmt->fetchAll();
-
-$stmt = $pdo->query("
-    SELECT l.id, l.name, COUNT(al.application_id) as count
-    FROM languages l
-    LEFT JOIN application_languages al ON l.id = al.language_id
-    GROUP BY l.id
-    ORDER BY count DESC, l.name
-");
-$stats = $stmt->fetchAll();
-
-$total = count($applications);
+try {
+    $stmt = $pdo->query("
+        SELECT a.*, u.login as user_login
+        FROM applications a
+        LEFT JOIN users u ON u.application_id = a.id
+        ORDER BY a.created_at DESC
+    ");
+    $applications = $stmt->fetchAll();
+    
+    foreach ($applications as &$app) {
+        $stmt = $pdo->prepare("
+            SELECT l.name 
+            FROM languages l
+            JOIN application_languages al ON l.id = al.language_id
+            WHERE al.application_id = ?
+            ORDER BY l.name
+        ");
+        $stmt->execute([$app['id']]);
+        $langs = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $app['languages_list'] = implode(', ', $langs);
+    }
+    
+    $stmt = $pdo->query("
+        SELECT l.name, COUNT(al.application_id) as count
+        FROM languages l
+        LEFT JOIN application_languages al ON l.id = al.language_id
+        GROUP BY l.id, l.name
+        ORDER BY count DESC, l.name
+    ");
+    $stats = $stmt->fetchAll();
+    
+    $total = count($applications);
+    
+} catch (PDOException $e) {
+    die("Database error: " . $e->getMessage());
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Админ-панель</title>
-    <link rel="stylesheet" href="admin.css">
+    <title>Admin Panel</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn { padding: 4px 8px; text-decoration: none; margin: 2px; border-radius: 3px; display: inline-block; }
+        .btn-edit { background: #4CAF50; color: white; }
+        .btn-delete { background: #f44336; color: white; }
+        .stats { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+        .stat-card { background: #f0f0f0; padding: 10px; border-radius: 5px; min-width: 100px; text-align: center; }
+        .stat-number { font-size: 24px; font-weight: bold; color: #667eea; }
+        .admin-info { background: #e3f2fd; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>
-            📊 Админ-панель
-            <span class="total-badge">Всего: <?= $total ?></span>
-        </h1>
-        <div class="admin-info">
-            👋 Вы вошли как: <strong><?= htmlspecialchars($admin['username']) ?></strong>
-        </div>
-        
-        <?php if ($message): ?>
-            <div class="message">✅ <?= htmlspecialchars($message) ?></div>
-        <?php endif; ?>
-        <?php if ($error): ?>
-            <div class="error">❌ <?= htmlspecialchars($error) ?></div>
-        <?php endif; ?>
-        
-        <!-- Статистика -->
-        <div class="stats-section">
-            <h2>📈 Статистика по языкам программирования</h2>
-            <div class="stats-grid">
-                <?php foreach ($stats as $stat): ?>
-                    <div class="stat-card">
-                        <div class="stat-number"><?= $stat['count'] ?></div>
-                        <div class="stat-name"><?= htmlspecialchars($stat['name']) ?></div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-        
-        <!-- Таблица анкет -->
-        <h2>📋 Все анкеты</h2>
-        
-        <?php if (empty($applications)): ?>
-            <div class="empty-state">
-                📭 Пока нет ни одной заполненной анкеты
-            </div>
-        <?php else: ?>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>ФИО</th>
-                            <th>Телефон</th>
-                            <th>Email</th>
-                            <th>Дата рожд.</th>
-                            <th>Пол</th>
-                            <th>Языки</th>
-                            <th>Пользователь</th>
-                            <th>Действия</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($applications as $app): ?>
-                            <tr>
-                                <td><?= $app['id'] ?></td>
-                                <td><?= htmlspecialchars($app['full_name']) ?></td>
-                                <td><?= htmlspecialchars($app['phone']) ?></td>
-                                <td><?= htmlspecialchars($app['email']) ?></td>
-                                <td><?= $app['birth_date'] ?></td>
-                                <td><?= $app['gender'] == 'male' ? 'Мужской' : 'Женский' ?></td>
-                                <td style="max-width: 200px;"><?= htmlspecialchars($app['languages_list'] ?? '-') ?></td>
-                                <td>
-                                    <?php if ($app['user_login']): ?>
-                                        <?= htmlspecialchars($app['user_login']) ?>
-                                    <?php else: ?>
-                                        <span class="badge">нет аккаунта</span>
-                                    <?php endif; ?>
-                                </td>
-                                <td class="actions">
-                                    <a href="admin_edit.php?id=<?= $app['id'] ?>" class="btn-edit" title="Редактировать">✏️</a>
-                                    <a href="admin_delete.php?id=<?= $app['id'] ?>" 
-                                       class="btn-delete" 
-                                       title="Удалить"
-                                       onclick="return confirm('Удалить анкету <?= htmlspecialchars($app['full_name']) ?>?')">
-                                       🗑️
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php endif; ?>
-        
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="index.php" class="back-link">← На главную</a>
-        </div>
+    <div class="header">
+        <h1>📊 Admin Panel</h1>
     </div>
+    
+    <div class="admin-info">
+        👋 Logged in as: <strong><?= htmlspecialchars($_SERVER['PHP_AUTH_USER']) ?></strong>
+    </div>
+    
+    <h2>📈 Statistics by Language</h2>
+    <div class="stats">
+        <?php if (empty($stats)): ?>
+            <p>No statistics available.</p>
+        <?php else: ?>
+            <?php foreach ($stats as $stat): ?>
+                <div class="stat-card">
+                    <div class="stat-number"><?= $stat['count'] ?></div>
+                    <div><?= htmlspecialchars($stat['name']) ?></div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+    
+    <h2>📋 All Applications (<?= $total ?>)</h2>
+    
+    <?php if (empty($applications)): ?>
+        <p>No applications yet. Please fill out the form first.</p>
+        <p><a href="../index.php">Go to form →</a></p>
+    <?php else: ?>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Birth Date</th>
+                        <th>Gender</th>
+                        <th>Languages</th>
+                        <th>User</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($applications as $app): ?>
+                        <tr>
+                            <td><?= $app['id'] ?></td>
+                            <td><?= htmlspecialchars($app['full_name']) ?></td>
+                            <td><?= htmlspecialchars($app['phone']) ?></td>
+                            <td><?= htmlspecialchars($app['email']) ?></td>
+                            <td><?= $app['birth_date'] ?></td>
+                            <td><?= $app['gender'] == 'male' ? 'Male' : 'Female' ?></td>
+                            <td><?= htmlspecialchars($app['languages_list'] ?: '-') ?></td>
+                            <td><?= htmlspecialchars($app['user_login'] ?? '-') ?></td>
+                            <td>
+                                <a href="admin_edit.php?id=<?= $app['id'] ?>" class="btn btn-edit">✏️ Edit</a>
+                                <a href="admin_delete.php?id=<?= $app['id'] ?>" class="btn btn-delete" onclick="return confirm('Delete?')">🗑️ Delete</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php endif; ?>
+    
+    <p style="margin-top: 20px;"><a href="../index.php">← Back to main form</a></p>
 </body>
 </html>
+
