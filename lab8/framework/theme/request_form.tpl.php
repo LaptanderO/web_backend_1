@@ -378,7 +378,7 @@ async function handleAjax(e) {
     btn.textContent = 'Отправка...';
     
     try {
-        var resp = await fetch('/api/requests', {
+        var resp = await fetch('../api/requests', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
