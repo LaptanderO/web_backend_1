@@ -24,6 +24,7 @@ $conf = array(
   'login' => 'admin',
   'password' => '123',
   'admin_mail' => 'sin@kubsu.ru',
+  'basedir' => '/web_backend_1/lab8/framework',
 );
 
 // Определения ресурсов для диспатчера.

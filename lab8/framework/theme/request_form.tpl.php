@@ -1,3 +1,6 @@
+<script>
+var BASE_URL = '<?=conf('basedir') ?>';
+</script>
 <style>
 .footer-contact {
     padding: 4rem 1rem;
@@ -280,7 +283,7 @@
             </div>
         <?php endif; ?>
 
-        <form class="footer-form" id="footerForm" action="/web_backend_1/lab8/framework/" method="POST">
+        <form class="footer-form" id="footerForm" action="/" method="POST">
             <div class="form-row">
                 <div class="form-group-footer">
                     <label for="footerName">Ваше имя *</label>
@@ -378,7 +381,7 @@ async function handleAjax(e) {
     btn.textContent = 'Отправка...';
     
     try {
-        var resp = await fetch('/web_backend_1/lab8/framework/api/requests', {
+        var resp = await fetch(BASE_URL + '/api/requests', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
