@@ -1,5 +1,5 @@
 <?php
-function auth_session(&$request, $r) {
+function auth(&$request, $r) {
     session_start();
     
     if (!empty($_SESSION['login']) && !empty($_SESSION['uid'])) {
