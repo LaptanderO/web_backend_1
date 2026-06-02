@@ -27,7 +27,7 @@ function api_put($id, $request) {
     $input = json_decode(file_get_contents('php://input'), true);
     
     global $db;
-    $stmt = $db->prepare("SELECT id FROM requests WHERE id = ? AND user_id = ?");
+    $stmt = $db->prepare("SELECT id FROM form_requests WHERE id = ? AND user_id = ?");
     $stmt->execute([$id, $request['user']['id']]);
     
     if (!$stmt->fetch()) {
