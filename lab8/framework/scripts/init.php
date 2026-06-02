@@ -70,7 +70,7 @@ function init($request = array(), $urlconf = array()) {
     }
 
     // Вызываем обработчик запроса в модуле передавая параметры из $params.
-    if ($result = call_user_func_array($func, $params)) {
+    if ($result = call_user_func_array($func, array_values($params))) {
       if (is_array($result)) {
         $response = array_merge($response, $result);
         // Первый модуль отработал запрос и выставил редирект или not found или forbidden.
