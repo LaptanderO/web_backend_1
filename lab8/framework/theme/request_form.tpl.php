@@ -389,8 +389,12 @@ async function handleAjax(e) {
         
         if (resp.ok) {
             document.getElementById('js-credentials').style.display = 'block';
-            document.getElementById('js-credentials').innerHTML = 
-                '✅ Заявка отправлена!<br>Ваш логин: <strong>' + result.login + '</strong><br>Ваш пароль: <strong>' + result.password + '</strong><br><a href="<?= conf('basedir') ?>/login" style="color:#2e7d32;">Войти для редактирования</a>';
+            if (result.login) {
+                document.getElementById('js-credentials').innerHTML = 
+                    '✅ Заявка отправлена!<br>Ваш логин: <strong>' + result.login + '</strong><br>Ваш пароль: <strong>' + result.password + '</strong><br><a href="<?= conf('basedir') ?>/login" style="color:#2e7d32;">Войти для редактирования</a>';
+            } else {
+                document.getElementById('js-credentials').innerHTML = '✅ Данные обновлены!';
+            }
             document.getElementById('js-errors').style.display = 'none';
             e.target.reset();
         } else {
