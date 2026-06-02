@@ -346,7 +346,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var form = document.getElementById('footerForm');
     if (form) {
         form.addEventListener('submit', handleAjax);
-        document.body.classList.add('js-enabled');
     }
 });
 
@@ -388,19 +387,21 @@ async function handleAjax(e) {
         var result = await resp.json();
         
         if (resp.ok) {
-            document.getElementById('js-credentials').style.display = 'block';
-            document.getElementById('js-errors').style.display = 'none';
-    
+            var msg = result.message || 'Сохранено!';
+            var html = '✅ ' + msg;
+            
             if (result.login && result.password) {
-                document.getElementById('js-credentials').innerHTML = 
-                    '✅ Заявка отправлена!<br>Ваш логин: <strong>' + result.login + '</strong><br>Ваш пароль: <strong>' + result.password + '</strong><br><a href="<?= conf('basedir') ?>/login" style="color:#2e7d32;">Войти для редактирования</a>';
+                html += '<br>Ваш логин: <strong>' + result.login + '</strong>';
+                html += '<br>Ваш пароль: <strong>' + result.password + '</strong>';
+                html += '<br><a href="<?= conf('basedir') ?>/login" style="color:#2e7d32;">Войти для редактирования</a>';
                 e.target.reset();
             } else {
-                document.getElementById('js-credentials').innerHTML = '✅ ' + (result.message || 'Данные сохранены!');
-                setTimeout(function() {
-                    location.reload();
-                }, 500);
+                setTimeout(function() { location.reload(); }, 500);
             }
+            
+            document.getElementById('js-credentials').style.display = 'block';
+            document.getElementById('js-credentials').innerHTML = html;
+            document.getElementById('js-errors').style.display = 'none';
         } else {
             showErrors(result.errors || {server: 'Ошибка сервера'});
         }
@@ -416,7 +417,6 @@ function showErrors(errors) {
     var el = document.getElementById('js-errors');
     el.style.display = 'block';
     el.innerHTML = Object.values(errors).map(function(e) { return '<div>⚠ ' + e + '</div>'; }).join('');
-    setTimeout(function() { el.style.display = 'none'; }, 5000);
 }
 </script>
 
