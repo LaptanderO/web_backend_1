@@ -1,4 +1,8 @@
 <?php
+global $db;
+if(!$db) {
+    require_once __DIR__ . '/db.php';
+}
 function validate_request($data) {
     $errors = [];
     
