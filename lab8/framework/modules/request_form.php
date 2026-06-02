@@ -11,7 +11,7 @@ function request_form_get($request) {
     
     if (!empty($request['user'])) {
         global $db;
-        $stmt = $db->prepare("SELECT * FROM requests WHERE user_id = ? ORDER BY id DESC LIMIT 1");
+        $stmt = $db->prepare("SELECT * FROM form_requests WHERE user_id = ? ORDER BY id DESC LIMIT 1");
         $stmt->execute([$request['user']['id']]);
         $data['values'] = $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }

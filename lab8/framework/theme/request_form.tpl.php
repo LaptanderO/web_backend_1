@@ -1,3 +1,6 @@
+<div class="footer-contact" style="background: linear-gradient(90deg, #040613 0%, #191b27 100%); padding: 4rem 1rem; color: #fff;">
+<div class="footer-contact-container" style="max-width: 1000px; margin: 0 auto;">
+
 <style>
 .footer-contact-title {
     font-size: 2rem;
@@ -359,7 +362,6 @@ async function handleAjax(e) {
         captcha: document.getElementById('captcha-v2').checked
     };
     
-    // Клиентская валидация
     var errors = {};
     if (!data.name) errors.name = 'Введите имя';
     if (!data.phone || !/^[\d\s\(\)\-\+]{7,20}$/.test(data.phone)) errors.phone = 'Неверный формат телефона';
@@ -415,3 +417,6 @@ function showErrors(errors) {
         .js-errors, .js-messages { display: none !important; }
     </style>
 </noscript>
+
+</div>
+</div>
