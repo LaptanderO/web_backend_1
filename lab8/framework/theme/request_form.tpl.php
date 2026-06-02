@@ -385,6 +385,7 @@ async function handleAjax(e) {
         });
         
         var result = await resp.json();
+        console.log('ОТВЕТ API:', result);
         
         if (resp.ok) {
             var msg = result.message || 'Сохранено!';
@@ -395,8 +396,6 @@ async function handleAjax(e) {
                 html += '<br>Ваш пароль: <strong>' + result.password + '</strong>';
                 html += '<br><a href="<?= conf('basedir') ?>/login" style="color:#2e7d32;">Войти для редактирования</a>';
                 e.target.reset();
-            } else {
-                setTimeout(function() { location.reload(); }, 500);
             }
             
             document.getElementById('js-credentials').style.display = 'block';
