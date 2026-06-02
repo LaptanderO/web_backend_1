@@ -1,0 +1,37 @@
+:root {
+    /* Цвета */
+    --primary-color: #ff6b35;
+    --secondary-color: #2a4365;
+    --accent-color: #4299e1;
+    --text-color: #333;
+    --text-light: #666;
+    --light-bg: #f7fafc;
+    --white: #fff;
+    --black: #000;
+    --border-color: #e2e8f0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --dark-bg-start: #040613;
+    --dark-bg-end: #191b27;
+    --text-blue: #5689bc;
+    --text-dark-blue: #000023;
+    --text-gray: #6c6d83;
+    --text-light-blue: #88b1d7;
+    --text-muted: #aea3ab;
+    
+    /* Отступы */
+    --section-padding: 4rem 1rem;
+    --section-padding-tablet: 5rem 2rem;
+    --section-padding-desktop: 6rem 2rem;
+    
+    /* Тени */
+    --shadow: 0 4px 6px var(--shadow-color);
+    --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.15);
+    
+    /* Бордеры */
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    
+    /* Анимации */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}

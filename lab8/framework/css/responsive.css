@@ -1,0 +1,712 @@
+/* ===== ПЛАНШЕТ (768px+) ===== */
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 2rem 2rem 90px;
+        height: 80vh;
+    }
+
+    .hero-inner {
+        padding-top: 3rem;
+    }
+    .hero-title {
+        font-size: 2.5rem;
+        max-width: 900px;
+    }
+    .hero-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 4rem;
+        max-width: 700px;
+    }
+    .hero-button {
+        width: 240px;
+        height: 70px;
+        font-size: 1.25rem;
+        margin-bottom: 4rem;
+    }
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        max-width: 600px;
+        padding: 0 1rem;
+    }
+    .feature-card {
+        height: 170px;
+    }
+    .feature-title {
+        font-size: 2rem;
+    }
+    .feature-text {
+        font-size: 0.9rem;
+    }
+   .feature-card::before {
+        height: 60px;
+        width: 5px;
+    }
+    .header-bar {
+        padding: 1.25rem 2rem 1.75rem;
+    }
+    .logo img {
+        height: 40px;
+    }
+
+    /* About */
+    .about {
+        padding: 5rem 2rem;
+    }
+    .about-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    .about-text {
+        margin-bottom: 4rem;
+    }
+    .about-text p {
+        font-size: 1.25rem;
+    }
+    .about-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        max-width: 1200px;
+    }
+    .about-card-text {
+        font-size: 0.8rem;
+    }
+
+    /* Support */
+    .support {
+        padding: 5rem 2rem;
+    }
+    .support-title {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+    .support-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    .support-card {
+        padding: 2rem;
+        min-height: 200px;
+        border-radius: 8px;
+    }
+    .support-card-title {
+        font-size: 1.3rem;
+    }
+    .support-card-text {
+        font-size: 1rem;
+    }
+    .support-card-image {
+        width: 90px;
+        height: 90px;
+    }
+
+    /* Expertise */
+    .expertise {
+        padding: 5rem 2rem 18rem;
+    }
+    .expertise-bg-image {
+        left: 2rem;
+        width: 500px;
+        height: 500px;
+        bottom: 100px;
+    }
+    .expertise-title {
+        font-size: 2.25rem;
+    }
+    .expertise-block {
+        padding: 1.5rem 1.5rem 1.5rem 1.25rem;
+    }
+    .expertise-text {
+        padding-left: 1rem;
+    }
+    .expertise-text p {
+        font-size: 1.125rem;
+    }
+
+    /* Tariffs */
+    .tariffs {
+        padding: 5rem 2rem;
+    }
+    .tariffs-title {
+        font-size: 2.5rem;
+        margin-bottom: 4rem;
+    }
+    .tariffs-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+    }
+    .tariff-card {
+        padding: 3rem 2rem;
+    }
+    .tariff-card-title {
+        font-size: 2rem;
+    }
+    .tariff-card-button {
+        width: 240px;
+        height: 65px;
+        font-size: 1.1rem;
+    }
+
+    /* Services */
+    .services {
+        padding: 5rem 2rem;
+    }
+    .services-title {
+        font-size: 2.5rem;
+        margin-bottom: 4rem;
+    }
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    /* Team */
+    .team {
+        padding: 5rem 2rem;
+    }
+    .team-title {
+        font-size: 2.5rem;
+        margin-bottom: 4rem;
+    }
+    .team-grid {
+        gap: 2rem;
+    }
+    .team-card-image {
+        height: 250px;
+    }
+    .team-card-content {
+        padding: 1.5rem;
+        min-height: 150px;
+    }
+    .team-card-name {
+        font-size: 1.2rem;
+    }
+    .team-card-text {
+        font-size: 0.9rem;
+    }
+
+    /* Cases */
+    .cases {
+        padding: 5rem 2rem;
+    }
+    .case-description {
+        grid-column: 1 / -1;
+    }
+
+    /* Reviews */
+    .reviews {
+        padding: 5rem 2rem;
+    }
+
+    /* Partners */
+    .partners {
+        padding: 5rem 2rem;
+    }
+
+    /* FAQ */
+    .faq {
+        padding: 5rem 2rem;
+    }
+
+    /* Footer */
+    .footer-contact {
+        padding: 5rem 2rem;
+    }
+    .footer-contacts {
+        flex-direction: row;
+        justify-content: center;
+        gap: 3rem;
+    }
+    .form-row {
+        flex-direction: row;
+    }
+    .form-row .form-group-footer {
+        flex: 1;
+    }
+}
+
+/* ===== ДЕСКТОП (1024px+) ===== */
+@media (min-width: 1024px) {
+    .section-title {
+        font-size: 3rem;
+    }
+
+    /* Hero */
+    .hero {
+        height: 60vh;
+        padding: 0 0 100px;
+    }
+
+    .hero-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        padding: 5rem 2rem 0;       
+    }
+
+    .hero-content {
+        flex: 0 0 450px;                
+        text-align: left;
+        max-width: 450px;
+    }
+    .hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        text-align: left;
+        padding: 0;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        text-align: left;
+        padding: 0;
+        margin-left: 0;
+        max-width: 450px;
+    }
+    .hero-button {
+        margin: 0 0 2rem 0;
+        width: 200px;
+        height: 55px;
+        font-size: 1rem;
+        border-width: 2px;
+        border-radius: 10px;
+    }
+    .features-grid {
+        flex: 1;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        max-width: 600px;
+        padding: 0;
+    }
+    .feature-card {
+        height: 170px;
+    }
+    .feature-card::before {
+        top: 45px;
+        bottom: 16px;
+        width: 6px;
+    }
+    .feature-title {
+        font-size: 1.5rem;
+    }
+    .feature-text {
+        font-size: 0.8rem;
+        min-height: 55px;
+    }
+
+    /* Header */
+    .header-bar {
+        position: absolute;
+        bottom: auto;
+        top: 2rem;
+        left: 50%;                    
+        transform: translateX(-50%);  
+        right: auto;
+        padding: 0 2rem;
+        background: transparent;
+        z-index: 10;
+        width: 100%;
+        max-width: 1200px;
+        gap: 2rem;
+    }
+    .logo {
+        flex-shrink: 0;
+    }
+    .logo img {
+        height: 25px;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    .mobile-menu {
+        display: none;
+    }
+    .desktop-menu {
+        display: block;
+        flex-shrink: 1;             
+    }
+    .desktop-menu-list {
+        gap: 0.2rem;
+    }
+    .desktop-menu-list > li > a {
+        font-size: 0.85rem;          
+    }
+
+    /* About */
+    .about {
+        padding: 6rem 2rem;
+    }
+    .about-title {
+        font-size: 2rem;
+        max-width: 50%;
+    }
+    .about-text p {
+        font-size: 1rem;
+        max-width: 50%;
+    }
+    .about-grid {
+        gap: 2rem;
+    }
+    .about-card {
+        padding: 1.5rem;
+        min-height: 200px;
+        border-radius: 12px;
+    }
+    .about-card-text {
+        font-size: 0.9rem;
+    }
+
+    /* Support */
+    .support {
+        padding: 6rem 2rem;
+    }
+    .support-title {
+        font-size: 2rem;
+    }
+    .support-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+    .support-card {
+        padding: 2.5rem 2rem;
+        min-height: 220px;
+    }
+    .support-card-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Expertise */
+    .expertise {
+        padding: 6rem 2rem 20rem;
+        min-height: 100vh;
+    }
+    .expertise-container {
+        max-width: 1200px;
+        display: flex;
+        flex-direction: column;          
+        align-items: flex-end;           
+    }
+    .expertise-bg-image {
+        left: 3rem;
+        width: 500px;
+        height: 500px;
+        bottom: 120px;
+    }
+    .expertise-title {
+        font-size: 2.5rem;
+        width: 40%;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+    .expertise-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        width: 40%;
+    }
+    .expertise-block {
+        padding: 0.75rem 1rem;
+        height: 180px;
+    }
+    .expertise-block::before {
+        top: 12px;
+        bottom: 12px;
+    }
+    .expertise-text p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    .expertise-bg-image {
+        bottom: -100px;
+        left: 0;
+        width: 700px;
+        height: 700px;
+    }
+
+    /* Tariffs */
+    .tariffs {
+        padding: 6rem 2rem;
+    }
+    .tariffs-title {
+        font-size: 3rem;
+    }
+    .tariffs-grid {
+        gap: 3rem;
+    }
+    .tariff-card {
+        padding: 3.5rem 2.5rem;
+        border-radius: 20px;
+    }
+    .tariff-card-title {
+        font-size: 2.25rem;
+    }
+    .tariff-card-button {
+        width: 260px;
+        height: 70px;
+        font-size: 1.15rem;
+    }
+
+    /* Services */
+    .services {
+        padding: 6rem 2rem;
+    }
+    .services-title {
+        font-size: 2rem;
+    }
+    .services-grid {
+        gap: 2.5rem;
+    }
+    .service-card {
+        padding: 3rem 2.5rem;
+        border-radius: 16px;
+    }
+    .service-card-image {
+        width: 150px;
+        height: 110px;
+        margin-bottom: 2.5rem;
+    }
+    .service-card-title {
+        font-size: 1.75rem;
+    }
+
+    /* Team */
+    .team {
+        padding: 6rem 2rem;
+    }
+    .team-title {
+        font-size: 2rem;
+    }
+    .team-grid {
+        gap: 2.5rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .team-card-image {
+        height: 280px;
+    }
+    .team-card-content {
+        padding: 2rem;
+        min-height: 160px;
+    }
+    .team-card-name {
+        font-size: 1.3rem;
+    }
+    .team-card-text {
+        font-size: 1rem;
+    }
+    .team-button {
+        width: 260px;
+        height: 65px;
+        font-size: 1.15rem;
+    }
+
+    /* Cases */
+    .cases {
+        padding: 6rem 2rem;
+    }
+    .cases-title {
+        font-size: 2rem;
+    }
+    .cases-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+    }
+    .case-card:first-child {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .case-card:first-child .case-card-bg {
+        height: 100%;
+    }
+    .case-card:first-child .case-card-content {
+        padding: 3rem;
+        justify-content: center;
+    }
+    .case-card-bg {
+        height: 280px;
+    }
+    .case-card-content {
+        padding: 2.5rem;
+    }
+    .case-card-title {
+        font-size: 1.4rem;
+    }
+    .case-description {
+        padding: 2.5rem;
+        margin: 1.5rem 0 3rem;
+    }
+
+    /* Partners */
+    .partners {
+        padding: 6rem 2rem;
+    }
+    .partners-title {
+        font-size: 2rem;
+    }
+    .partners-rows-container {
+        gap: 2.5rem;
+        padding: 4rem 0;
+    }
+    .partners-row {
+        height: 140px;
+    }
+    .partners-row:nth-child(2) {
+        margin-left: 0px;
+    }
+    .partner-logo {
+        width: 180px;
+        padding: 2rem;
+        border-radius: 10px;
+    }
+
+    /* Footer */
+    .footer-contact {
+        padding: 6rem 2rem;
+    }
+    .dropdown-menu {
+        min-width: 180px;            
+        padding: 0.25rem 0;         
+    }
+    
+    .dropdown-menu a {
+        padding: 0.5rem 1.25rem;     
+        font-size: 0.85rem;          
+    }
+    
+    .dropdown-menu a:hover {
+        padding-left: 1.25rem;       
+    }
+    
+    .dropdown-menu::before {
+        top: -6px;
+        border-left-width: 6px;
+        border-right-width: 6px;
+        border-bottom-width: 6px;
+    }
+}
+
+/* ===== БОЛЬШИЕ ЭКРАНЫ (1200px+) ===== */
+@media (min-width: 1200px) {
+    .hero-inner {
+        gap: 3rem;
+        padding-top: 6rem;
+    }
+    .hero-content {
+        flex: 0 0 500px;
+    }
+    .hero-title {
+        font-size: 3rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+        max-width: 500px;
+    }
+    .hero-button {
+        width: 250px;
+        height: 65px;
+        font-size: 1.3rem;
+    }
+    .features-grid {
+        max-width: 750px;
+        gap: 1.5rem;
+    }
+    .feature-card {
+        height: 180px;
+    }
+    .feature-card::before {
+        top: 55px;
+        bottom: 20px;
+        width: 8px;
+    }
+    .feature-title {
+        font-size: 1.75rem;
+    }
+    .feature-text {
+        font-size: 0.85rem;
+        min-height: 60px;
+    }
+
+    .about-title {
+        font-size: 2.5rem;
+    }
+    .about-grid {
+        gap: 2.5rem;
+    }
+    .about-card {
+        padding: 2rem;
+        min-height: 220px;
+    }
+    .about-card-text {
+        font-size: 1rem;
+    }
+
+    .support-title {
+        font-size: 2.5rem;
+    }
+    .support-grid {
+        gap: 2.5rem;
+    }
+    .support-card {
+        padding: 3rem 2.5rem;
+        min-height: 240px;
+    }
+
+    .expertise {
+        padding: 7rem 2rem;
+    }
+    .expertise-bg-image {
+        bottom: -100px;
+        left: 0;
+        width: 800px;
+        height: 800px;
+    }
+    .expertise-title {
+        font-size: 2.75rem;
+    }
+    .expertise-text p {
+        font-size: 0.9rem;
+    }
+
+    .tariff-card {
+        padding: 4rem 3rem;
+    }
+
+    .service-card-image {
+        width: 160px;
+        height: 120px;
+        margin-bottom: 3rem;
+    }
+
+    .team-grid {
+        gap: 3rem;
+        max-width: 1100px;
+    }
+    .team-card-image {
+        height: 300px;
+    }
+    .team-card-content {
+        padding: 2.5rem;
+        min-height: 170px;
+    }
+
+    .cases-grid {
+        gap: 3rem;
+    }
+    .case-card:first-child .case-card-content {
+        padding: 4rem;
+    }
+    .case-card-bg {
+        height: 300px;
+    }
+    .case-card-content {
+        padding: 3rem;
+    }
+}

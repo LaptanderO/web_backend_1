@@ -1,0 +1,25 @@
+/* ===== VENDOR ===== */
+/* Шрифты подключаются в typography.css */
+
+/* ===== CORE ===== */
+@import 'variables.css';
+@import 'reset.css';
+@import 'typography.css';
+@import 'utilities.css';
+
+/* ===== SECTIONS ===== */
+@import 'hero.css';
+@import 'about.css';
+@import 'support.css';
+@import 'expertise.css';
+@import 'tariffs.css';
+@import 'services.css';
+@import 'team.css';
+@import 'cases.css';
+@import 'reviews.css';
+@import 'partners.css';
+@import 'faq.css';
+@import 'footer.css';
+
+/* ===== RESPONSIVE ===== */
+@import 'responsive.css';

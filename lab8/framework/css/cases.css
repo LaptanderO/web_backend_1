@@ -1,0 +1,103 @@
+/* ===== CASES SECTION ===== */
+.cases {
+    padding: var(--section-padding);
+    background: var(--white);
+    width: 100%;
+}
+
+.cases-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.cases-title {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--text-dark-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cases-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.case-card {
+    background: var(--white);
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.case-card-bg {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.case-card-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.case-card-content {
+    padding: 1.5rem;
+    background: var(--white);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.case-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark-blue);
+    flex: 1;
+}
+
+.case-card-date {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+.case-description {
+    background: var(--white);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-left: 4px solid var(--primary-color);
+}
+
+.case-description p {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.cases-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.cases-footer p {
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+.release-link {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.release-link:hover {
+    text-decoration: underline;
+}

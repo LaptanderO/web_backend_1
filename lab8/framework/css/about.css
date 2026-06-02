@@ -1,0 +1,79 @@
+/* ===== ABOUT SECTION ===== */
+.about {
+    padding: var(--section-padding);
+    background: var(--white);
+    width: 100%;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.about-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark-blue);
+    max-width: 50%;
+}
+
+.about-text {
+    text-align: left;
+    margin-bottom: 3rem;
+    max-width: 50%;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.about-text p {
+    font-size: 1.125rem;
+    color: var(--text-blue);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.about-card-image {
+    width: 68px;
+    height: 50px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background: var(--light-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.about-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.about-card-text {
+    font-size: 0.875rem;
+    color: var(--text-blue);
+    line-height: 1.4;
+}

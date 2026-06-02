@@ -1,23 +1,4 @@
-<script>
-var BASE_URL = '<?=conf('basedir') ?>';
-</script>
 <style>
-.footer-contact {
-    padding: 4rem 1rem;
-    background: linear-gradient(90deg, #040613 0%, #191b27 100%);
-    color: #ffffff;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.footer-contact-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    width: 100%;
-    box-sizing: border-box;
-}
-
 .footer-contact-title {
     font-size: 2rem;
     font-weight: 800;
@@ -101,7 +82,6 @@ var BASE_URL = '<?=conf('basedir') ?>';
     .form-row {
         flex-direction: row;
     }
-
     .form-group-footer {
         flex: 1;
     }
@@ -135,6 +115,7 @@ var BASE_URL = '<?=conf('basedir') ?>';
     font-size: 1rem;
     transition: all 0.3s ease;
     font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
 }
 
 .form-group-footer input:focus,
@@ -263,84 +244,99 @@ var BASE_URL = '<?=conf('basedir') ?>';
 }
 </style>
 
-<div class="footer-contact">
-    <div class="footer-contact-container">
-        <h2 class="footer-contact-title">Оставить заявку на поддержку сайта</h2>
-        <div class="footer-contact-text">
-            <p>Срочно нужна поддержка сайта? Ваша команда не успевает справиться самостоятельно или предыдущий подрядчик не справился с работой? Тогда вам точно к нам! Просто оставьте заявку и наш менеджер с вами свяжется!</p>
+<h2 class="footer-contact-title">Оставить заявку на поддержку сайта</h2>
+<div class="footer-contact-text">
+    <p>Срочно нужна поддержка сайта? Ваша команда не успевает справиться самостоятельно или предыдущий подрядчик не справился с работой? Тогда вам точно к нам! Просто оставьте заявку и наш менеджер с вами свяжется!</p>
+</div>
+
+<div class="footer-contacts">
+    <div class="contact-item">
+        <div class="contact-icon">
+            <img src="<?= conf('basedir') ?>/img/phone-icon.png" alt="Телефон">
         </div>
-
-        <!-- Блок для сообщений (JS) -->
-        <div id="js-credentials" class="js-messages" style="display:none;"></div>
-        <div id="js-errors" class="js-errors" style="display:none;"></div>
-
-        <!-- Сообщения с сервера (без JS) -->
-        <?php if (!empty($c['messages'])): ?>
-            <div class="js-messages">
-                <?php foreach ($c['messages'] as $msg): ?>
-                    <div><?= $msg ?></div>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-
-        <form class="footer-form" id="footerForm" action="/" method="POST">
-            <div class="form-row">
-                <div class="form-group-footer">
-                    <label for="footerName">Ваше имя *</label>
-                    <input type="text" id="footerName" name="name" required 
-                           value="<?= htmlspecialchars($c['values']['name'] ?? '') ?>"
-                           placeholder="Иван Иванов">
-                    <?php if (!empty($c['errors']['name'])): ?>
-                        <div class="error-message"><?= $c['errors']['name'] ?></div>
-                    <?php endif; ?>
-                </div>
-                <div class="form-group-footer">
-                    <label for="footerPhone">Телефон *</label>
-                    <input type="tel" id="footerPhone" name="phone" required 
-                           value="<?= htmlspecialchars($c['values']['phone'] ?? '') ?>"
-                           placeholder="+7 (999) 123-45-67">
-                    <?php if (!empty($c['errors']['phone'])): ?>
-                        <div class="error-message"><?= $c['errors']['phone'] ?></div>
-                    <?php endif; ?>
-                </div>
-            </div>
-            <div class="form-group-footer full-width">
-                <label for="footerEmail">E-mail *</label>
-                <input type="email" id="footerEmail" name="email" required 
-                       value="<?= htmlspecialchars($c['values']['email'] ?? '') ?>"
-                       placeholder="example@mail.ru">
-                <?php if (!empty($c['errors']['email'])): ?>
-                    <div class="error-message"><?= $c['errors']['email'] ?></div>
-                <?php endif; ?>
-            </div>
-            <div class="form-group-footer full-width">
-                <label for="footerComment">Ваш комментарий</label>
-                <textarea id="footerComment" name="comment" rows="3" 
-                          placeholder="Опишите вашу задачу..."><?= htmlspecialchars($c['values']['comment'] ?? '') ?></textarea>
-            </div>
-
-            <div class="form-agreement">
-                <input type="checkbox" id="agreement" name="agreement" required
-                       <?= !empty($c['values']['agreement']) ? 'checked' : '' ?>>
-                <label for="agreement">
-                    <span class="checkbox-custom"></span>
-                    Отправляя заявку, я даю согласие на обработку своих персональных данных.*
-                </label>
-                <?php if (!empty($c['errors']['agreement'])): ?>
-                    <div class="error-message"><?= $c['errors']['agreement'] ?></div>
-                <?php endif; ?>
-            </div>
-
-            <div class="captcha-container">
-                <input type="checkbox" id="captcha-v2" name="captcha" required>
-                <span class="captcha-text">Я не робот</span>
-                <span class="captcha-logo">reCAPTCHA</span>
-            </div>
-
-            <button type="submit" class="footer-submit-button" id="submitBtn">Свяжитесь с нами</button>
-        </form>
+        <div class="contact-info">
+            <a href="tel:88002222673" class="contact-link">8 800 222-26-73</a>
+        </div>
+    </div>
+    <div class="contact-item">
+        <div class="contact-icon">
+            <img src="<?= conf('basedir') ?>/img/email-icon.png" alt="Почта">
+        </div>
+        <div class="contact-info">
+            <a href="mailto:info@drupal-coder.ru" class="contact-link">info@drupal-coder.ru</a>
+        </div>
     </div>
 </div>
+
+<!-- Блок для сообщений (JS) -->
+<div id="js-credentials" class="js-messages" style="display:none;"></div>
+<div id="js-errors" class="js-errors" style="display:none;"></div>
+
+<!-- Сообщения с сервера (без JS) -->
+<?php if (!empty($c['messages'])): ?>
+    <div class="js-messages">
+        <?php foreach ($c['messages'] as $msg): ?>
+            <div><?= $msg ?></div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
+<form class="footer-form" id="footerForm" action="" method="POST">
+    <div class="form-row">
+        <div class="form-group-footer">
+            <label for="footerName">Ваше имя *</label>
+            <input type="text" id="footerName" name="name" required 
+                   value="<?= htmlspecialchars($c['values']['name'] ?? '') ?>"
+                   placeholder="Иван Иванов">
+            <?php if (!empty($c['errors']['name'])): ?>
+                <div class="error-message"><?= $c['errors']['name'] ?></div>
+            <?php endif; ?>
+        </div>
+        <div class="form-group-footer">
+            <label for="footerPhone">Телефон *</label>
+            <input type="tel" id="footerPhone" name="phone" required 
+                   value="<?= htmlspecialchars($c['values']['phone'] ?? '') ?>"
+                   placeholder="+7 (999) 123-45-67">
+            <?php if (!empty($c['errors']['phone'])): ?>
+                <div class="error-message"><?= $c['errors']['phone'] ?></div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <div class="form-group-footer full-width">
+        <label for="footerEmail">E-mail *</label>
+        <input type="email" id="footerEmail" name="email" required 
+               value="<?= htmlspecialchars($c['values']['email'] ?? '') ?>"
+               placeholder="example@mail.ru">
+        <?php if (!empty($c['errors']['email'])): ?>
+            <div class="error-message"><?= $c['errors']['email'] ?></div>
+        <?php endif; ?>
+    </div>
+    <div class="form-group-footer full-width">
+        <label for="footerComment">Ваш комментарий</label>
+        <textarea id="footerComment" name="comment" rows="3" 
+                  placeholder="Опишите вашу задачу..."><?= htmlspecialchars($c['values']['comment'] ?? '') ?></textarea>
+    </div>
+
+    <div class="form-agreement">
+        <input type="checkbox" id="agreement" name="agreement" required
+               <?= !empty($c['values']['agreement']) ? 'checked' : '' ?>>
+        <label for="agreement">
+            <span class="checkbox-custom"></span>
+            Отправляя заявку, я даю согласие на обработку своих персональных данных.*
+        </label>
+        <?php if (!empty($c['errors']['agreement'])): ?>
+            <div class="error-message"><?= $c['errors']['agreement'] ?></div>
+        <?php endif; ?>
+    </div>
+
+    <div class="captcha-container">
+        <input type="checkbox" id="captcha-v2" name="captcha" required>
+        <span class="captcha-text">Я не робот</span>
+        <span class="captcha-logo">reCAPTCHA</span>
+    </div>
+
+    <button type="submit" class="footer-submit-button" id="submitBtn">Свяжитесь с нами</button>
+</form>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -381,7 +377,7 @@ async function handleAjax(e) {
     btn.textContent = 'Отправка...';
     
     try {
-        var resp = await fetch(BASE_URL + '/api/requests', {
+        var resp = await fetch('<?= conf('basedir') ?>/api/requests', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -390,12 +386,11 @@ async function handleAjax(e) {
         var result = await resp.json();
         
         if (resp.ok) {
-            // Показываем логин и пароль
             document.getElementById('js-credentials').style.display = 'block';
             document.getElementById('js-credentials').innerHTML = 
-                '✅ Заявка отправлена!<br>Ваш логин: <strong>' + result.login + '</strong><br>Ваш пароль: <strong>' + result.password + '</strong><br><a href="/login" style="color:#2e7d32;">Войти для редактирования</a>';
+                '✅ Заявка отправлена!<br>Ваш логин: <strong>' + result.login + '</strong><br>Ваш пароль: <strong>' + result.password + '</strong><br><a href="<?= conf('basedir') ?>/login" style="color:#2e7d32;">Войти для редактирования</a>';
             document.getElementById('js-errors').style.display = 'none';
-            form.reset();
+            e.target.reset();
         } else {
             showErrors(result.errors || {server: 'Ошибка сервера'});
         }
