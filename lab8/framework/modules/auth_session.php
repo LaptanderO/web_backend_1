@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../scripts/db.php';
+
 function auth(&$request, $r) {
     session_start();
     
