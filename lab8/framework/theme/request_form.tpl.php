@@ -388,21 +388,19 @@ async function handleAjax(e) {
         var result = await resp.json();
         
         if (resp.ok) {
-            if (result.is_edit) {
-                // Редактирование — перезагружаем страницу чтобы показать новые данные
-                document.getElementById('js-credentials').style.display = 'block';
-                document.getElementById('js-credentials').innerHTML = '✅ Данные обновлены!';
-                setTimeout(function() {
-                    location.reload();
-                }, 500);
-            } else {
-                // Новая регистрация — показываем логин/пароль
-                document.getElementById('js-credentials').style.display = 'block';
+            document.getElementById('js-credentials').style.display = 'block';
+            document.getElementById('js-errors').style.display = 'none';
+    
+            if (result.login && result.password) {
                 document.getElementById('js-credentials').innerHTML = 
                     '✅ Заявка отправлена!<br>Ваш логин: <strong>' + result.login + '</strong><br>Ваш пароль: <strong>' + result.password + '</strong><br><a href="<?= conf('basedir') ?>/login" style="color:#2e7d32;">Войти для редактирования</a>';
                 e.target.reset();
+            } else {
+                document.getElementById('js-credentials').innerHTML = '✅ ' + (result.message || 'Данные сохранены!');
+                setTimeout(function() {
+                    location.reload();
+                }, 500);
             }
-            document.getElementById('js-errors').style.display = 'none';
         } else {
             showErrors(result.errors || {server: 'Ошибка сервера'});
         }
