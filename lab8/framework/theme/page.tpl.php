@@ -296,22 +296,48 @@
             <div class="tariffs-grid">
                 <article class="tariff-card">
                     <h3 class="tariff-card-title">Стартовый</h3>
-                    <div class="tariff-card-text"><p>Консультации и работы по SEO, услуги дизайнера<br>Предоплата от 6 000 рублей в месяц</p></div>
+                    <div class="tariff-card-text">
+                        <p>
+                            Консультации и работы по SEO, услуги дизайнера<br>
+                            Неиспользованные оплаченные часы переносятся на следующий месяц<br>
+                            Предоплата от 6 000 рублей в месяц
+                        </p>
+                    </div>
                     <button class="tariff-card-button" type="button">Свяжитесь с нами!</button>
                 </article>
                 <article class="tariff-card">
                     <h3 class="tariff-card-title">Бизнес</h3>
-                    <div class="tariff-card-text"><p>Консультации и работы по SEO, услуги дизайнера<br>Предоплата от 30 000 рублей в месяц</p></div>
+                    <div class="tariff-card-text">
+                        <p>
+                            Консультации и работы по SEO<br>
+                            Услуги дизайнера<br>
+                            Высокое время реакции – до 2 рабочих дней<br>
+                            Неиспользованные оплаченные часы не переносятся<br>
+                            Предоплата от 30 000 рублей в месяц
+                        </p>
+                    </div>
                     <button class="tariff-card-button" type="button">Свяжитесь с нами!</button>
                 </article>
                 <article class="tariff-card">
                     <h3 class="tariff-card-title">VIP</h3>
-                    <div class="tariff-card-text"><p>Максимальное время реакции – в день обращения<br>Предоплата от 270 000 рублей в месяц</p></div>
+                    <div class="tariff-card-text">
+                        <p>
+                            Консультации и работы по SEO<br>
+                            Услуги дизайнера<br>
+                            Максимальное время реакции – в день обращения<br>
+                            Неиспользованные оплаченные часы не переносятся<br>
+                            Предоплата от 270 000 рублей в месяц
+                        </p>
+                    </div>
                     <button class="tariff-card-button" type="button">Свяжитесь с нами!</button>
                 </article>
             </div>
-            <div class="tariffs-after-text"><p>Вам не подходят наши тарифы? Оставьте заявку и мы предложим вам индивидуальные условия!</p></div>
-            <div class="tariffs-individual"><a href="#individual" class="individual-link">получить индивидуальный тариф</a></div>
+            <div class="tariffs-after-text">
+                <p>Вам не подходят наши тарифы? Оставьте заявку и мы предложим вам индивидуальные условия!</p>
+            </div>
+            <div class="tariffs-individual">
+                <a href="#individual" class="individual-link">получить индивидуальный тариф</a>
+            </div>
         </div>
     </section>
 
@@ -380,40 +406,60 @@
             <h2 class="cases-title">Последние кейсы</h2>
             <div class="cases-grid">
                 <article class="case-card">
-                    <div class="case-card-bg"><img src="<?= conf('basedir') ?>/img/case-1.jpg" alt=""></div>
+                    <div class="case-card-bg">
+                        <img src="img/case-1.jpg" alt="Настройка кэширования">
+                    </div>
                     <div class="case-card-content">
-                        <h3 class="case-card-title">Настройка кэширования данных. Апгрейд сервера. Ускорение работы сайта в 30 раз!</h3>
+                        <h3 class="case-card-title">Настройка кэширования данных. Апргейд сервера. Ускорение работы
+                            сайта в 30 раз!</h3>
                         <div class="case-card-date">04.05.2020</div>
                     </div>
                 </article>
-                <div class="case-description"><p>Благодаря скорости загрузки страниц сайта отказы и конверсии. Кейс ускорения.</p></div>
+                <div class="case-description">
+                    <p>Благодаря скорости загрузки страниц сайта отказы и конверсии. Кейс ускорения.</p>
+                </div>
                 <article class="case-card">
-                    <div class="case-card-bg"><img src="<?= conf('basedir') ?>/img/case-2.jpg" alt=""></div>
-                    <div class="case-card-content"><h3 class="case-card-title">Использование отчетов Ecommerce в Яндекс.Метрике</h3></div>
+                    <div class="case-card-bg">
+                        <img src="img/case-2.jpg" alt="Формы заявок">
+                    </div>
+                    <div class="case-card-content">
+                        <h3 class="case-card-title">Использование отчетов Ecommerce в Яндекс.Метрике</h3>
+                    </div>
                 </article>
                 <article class="case-card">
-                    <div class="case-card-bg"><img src="<?= conf('basedir') ?>/img/case-3.jpg" alt=""></div>
+                    <div class="case-card-bg">
+                        <img src="img/case-3.jpg" alt="Обмен товарами">
+                    </div>
                     <div class="case-card-content">
-                        <h3 class="case-card-title">Повышение конверсии страницы с формой заявки с применением AB тестирования.</h3>
+                        <h3 class="case-card-title">Повышение конверсии страницы с формой заявки с применением AB
+                            тестирования.</h3>
                         <div class="case-card-date">24.01.2020</div>
                     </div>
                 </article>
                 <article class="case-card">
-                    <div class="case-card-bg"><img src="<?= conf('basedir') ?>/img/case-4.jpg" alt=""></div>
+                    <div class="case-card-bg">
+                        <img src="img/case-4.jpg" alt="Кейс 4">
+                    </div>
                     <div class="case-card-content">
-                        <h3 class="case-card-title">Drupal 7: ускорение времени генерации страницы интернет-магазина на 32%.</h3>
+                        <h3 class="case-card-title">Формы заявок с примерами тестирования. Drupal 7: ускорение времени
+                            генерации страницы интернет-магазина на 32%.</h3>
                         <div class="case-card-date">23.09.2019</div>
                     </div>
                 </article>
                 <article class="case-card">
-                    <div class="case-card-bg"><img src="<?= conf('basedir') ?>/img/case-5.jpg" alt=""></div>
+                    <div class="case-card-bg">
+                        <img src="img/case-5.jpg" alt="Кейс 5">
+                    </div>
                     <div class="case-card-content">
-                        <h3 class="case-card-title">Обмен товарами и заказами интернет-магазина на Drupal 7 с 1С.</h3>
+                        <h3 class="case-card-title">Обмен товарами и заказами интернет-магазина на Drupal 7 с 1С:
+                            Предприятие, МойСклад, Класс365.</h3>
                         <div class="case-card-date">22.08.2019</div>
                     </div>
                 </article>
             </div>
-            <div class="cases-footer"><p>Опубликован <a href="#release" class="release-link">релиз модуля</a></p></div>
+            <div class="cases-footer">
+                <p>Опубликован <a href="#release" class="release-link">релиз модуля</a></p>
+            </div>
         </div>
     </section>
 
@@ -425,21 +471,59 @@
                 <div class="slider-wrapper">
                     <div class="review-slide active">
                         <div class="review-card">
-                            <div class="review-logo"><img src="<?= conf('basedir') ?>/img/logo_0.png" alt=""></div>
-                            <div class="review-text"><p>Долгие поиски единственного и неповторимого мастера... привели меня к ребятам из Drupal-coder. Все качественно и быстро!</p></div>
+                            <div class="review-logo">
+                                <img src="img/logo_0.png" alt="Логотип компании Ciel Parfum">
+                            </div>
+                            <div class="review-text">
+                                <p>Долгие поиски единственного и неповторимого мастера на многостраничный сайт
+                                    www.cielparfum.com, который был собран крайне некомпетентным программистом и раз в
+                                    месяц стабильно грозился "погибнуть", привели меня на сайт и в итоге, к ребятам из
+                                    Drupal-coder. И вот уже практически полгода как не проходит и дня, чтобы я не
+                                    подписывалась и не порадовалась своему "ведению" и "полету". Все, что не работало -
+                                    от поиска до отображения меню. Провели редизайн - не отход от желаемого, но со
+                                    своими существенными и качественными дополнениями. Осуществили ряд проектов -
+                                    конкурсы, тесты и т.д. А уж мелких доработок и подработок - не счесть! И главное -
+                                    все качественно и быстро (не взирая на не самый "быстрый" тариф). Есть вопросы -
+                                    замечательный Алексей всегда подскажет, поддержит, отремонтирует или просто сделает
+                                    с нуля. Есть задумка для реализации - замечательный Сергей обсудит и предложит
+                                    идеальный вариант. Есть проблема - замечательные Надежда и Роман поймут, поправят,
+                                    сделают! Ребята показали то, что эта CMS – мощная и грамотная система управления.
+                                    Надеюсь, что наше сотрудничество затянется надолго. Спасибо!</p>
+                            </div>
                             <div class="review-author">
                                 <div class="author-info">
-                                    <span class="author-name">Наталья Сушкова</span>
-                                    <a href="http://www.cielparfum.com/" class="company-link" target="_blank">cielparfum.com</a>
+                                    <span class="author-name">С уважением, Наталья Сушкова руководитель Отдела
+                                        веб-проектов Группы компаний "Си Эль парфюм"</span>
+                                    <a href="http://www.cielparfum.com/" class="company-link"
+                                        target="_blank">http://www.cielparfum.com/</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-slide">
+                        <div class="review-card">
+                            <div class="review-logo">
+                                <img src="img/logo-client-2.png" alt="Логотип компании 2">
+                            </div>
+                            <div class="review-text">
+                                <p>Другой отзыв от довольного клиента.</p>
+                            </div>
+                            <div class="review-author">
+                                <div class="author-info">
+                                    <span class="author-name">Имя Фамилия,</span>
+                                    <a href="https://company2.com" class="company-link" target="_blank">Название
+                                        компании</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="slider-nav">
-                    <button class="slider-arrow prev" aria-label="Предыдущий">←</button>
-                    <div class="slider-counter"><span class="current-slide">01</span>/<span class="total-slides">08</span></div>
-                    <button class="slider-arrow next" aria-label="Следующий">→</button>
+                    <button class="slider-arrow prev" aria-label="Предыдущий отзыв">←</button>
+                    <div class="slider-counter">
+                        <span class="current-slide">01</span>/<span class="total-slides">08</span>
+                    </div>
+                    <button class="slider-arrow next" aria-label="Следующий отзыв">→</button>
                 </div>
             </div>
         </div>
@@ -448,27 +532,70 @@
     <!-- ==================== ЧАСТЬ 11: ПАРТНЁРЫ ==================== -->
     <section class="partners">
         <div class="partners-container">
+            <!-- ЗАГОЛОВОК СЕКЦИИ -->
             <h2 class="partners-title">С нами работают</h2>
-            <div class="partners-text"><p>Десятки компаний доверяют нам самое ценное, что у них есть в Интернете – свои сайты.</p></div>
+
+            <!-- ТЕКСТ ПОД ЗАГОЛОВКОМ -->
+            <div class="partners-text">
+                <p>Десятки компаний доверяют нам самое ценное, что у них есть в Интернете – свои сайты. Мы делаем все,
+                    чтобы наше сотрудничество было долгим.</p>
+            </div>
+
+            <!-- 2 СТРОКИ С КАРТОЧКАМИ -->
             <div class="partners-rows-container">
+
+                <!-- СТРОКА 1 -->
                 <div class="partners-row">
                     <div class="partners-track">
-                        <div class="partner-logo"><img src="<?= conf('basedir') ?>/img/logo.png" alt=""></div>
-                        <div class="partner-logo"><img src="<?= conf('basedir') ?>/img/logo_0.png" alt=""></div>
-                        <div class="partner-logo"><img src="<?= conf('basedir') ?>/img/logo_2.png" alt=""></div>
-                        <div class="partner-logo"><img src="<?= conf('basedir') ?>/img/logo-estee.png" alt=""></div>
-                        <div class="partner-logo"><img src="<?= conf('basedir') ?>/img/lpcma_rus_v4.jpg" alt=""></div>
+                        <!-- Набор 1 -->
+                        <div class="partner-logo"><img src="img/logo.png" alt="Personal Writer"></div>
+                        <div class="partner-logo"><img src="img/logo_0.png" alt="Ciel Parfum"></div>
+                        <div class="partner-logo"><img src="img/logo_2.png" alt="Serebro.Ag"></div>
+                        <div class="partner-logo"><img src="img/logo-estee.png" alt="Estee"></div>
+                        <div class="partner-logo"><img src="img/lpcma_rus_v4.jpg" alt="lpcma"></div>
+
+                        <!-- Набор 2 (дубликат) -->
+                        <div class="partner-logo"><img src="img/logo.png" alt="Personal Writer"></div>
+                        <div class="partner-logo"><img src="img/logo_0.png" alt="Ciel Parfum"></div>
+                        <div class="partner-logo"><img src="img/logo_2.png" alt="Serebro.Ag"></div>
+                        <div class="partner-logo"><img src="img/logo-estee.png" alt="Estee"></div>
+                        <div class="partner-logo"><img src="img/lpcma_rus_v4.jpg" alt="lpcma"></div>
+
+                        <!-- Набор 3 (еще один дубликат) -->
+                        <div class="partner-logo"><img src="img/logo.png" alt="Personal Writer"></div>
+                        <div class="partner-logo"><img src="img/logo_0.png" alt="Ciel Parfum"></div>
+                        <div class="partner-logo"><img src="img/logo_2.png" alt="Serebro.Ag"></div>
+                        <div class="partner-logo"><img src="img/logo-estee.png" alt="Estee"></div>
+                        <div class="partner-logo"><img src="img/lpcma_rus_v4.jpg" alt="lpcma"></div>
                     </div>
                 </div>
+
+                <!-- СТРОКА 2 (в обратном порядке) -->
                 <div class="partners-row">
                     <div class="partners-track">
-                        <div class="partner-logo"><img src="<?= conf('basedir') ?>/img/nashagazeta_ch.png" alt=""></div>
-                        <div class="partner-logo"><img src="<?= conf('basedir') ?>/img/logo-estee.png" alt=""></div>
-                        <div class="partner-logo"><img src="<?= conf('basedir') ?>/img/logo_2.png" alt=""></div>
-                        <div class="partner-logo"><img src="<?= conf('basedir') ?>/img/logo_0.png" alt=""></div>
-                        <div class="partner-logo"><img src="<?= conf('basedir') ?>/img/lpcma_rus_v4.jpg" alt=""></div>
+                        <!-- Набор 1 обратный -->
+                        <div class="partner-logo"><img src="img/lpcma_rus_v4.jpg" alt="lpcma"></div>
+                        <div class="partner-logo"><img src="img/logo-estee.png" alt="Estee"></div>
+                        <div class="partner-logo"><img src="img/logo_2.png" alt="Serebro.Ag"></div>
+                        <div class="partner-logo"><img src="img/logo_0.png" alt="Ciel Parfum"></div>
+                        <div class="partner-logo"><img src="img/nashagazeta_ch.png" alt="Nasha Gazeta"></div>
+
+                        <!-- Набор 2 (дубликат) -->
+                        <div class="partner-logo"><img src="img/lpcma_rus_v4.jpg" alt="lpcma"></div>
+                        <div class="partner-logo"><img src="img/logo-estee.png" alt="Estee"></div>
+                        <div class="partner-logo"><img src="img/logo_2.png" alt="Serebro.Ag"></div>
+                        <div class="partner-logo"><img src="img/logo_0.png" alt="Ciel Parfum"></div>
+                        <div class="partner-logo"><img src="img/nashagazeta_ch.png" alt="Nasha Gazeta"></div>
+
+                        <!-- Набор 3 (еще один дубликат) -->
+                        <div class="partner-logo"><img src="img/lpcma_rus_v4.jpg" alt="lpcma"></div>
+                        <div class="partner-logo"><img src="img/logo-estee.png" alt="Estee"></div>
+                        <div class="partner-logo"><img src="img/logo_2.png" alt="Serebro.Ag"></div>
+                        <div class="partner-logo"><img src="img/logo_0.png" alt="Ciel Parfum"></div>
+                        <div class="partner-logo"><img src="img/nashagazeta_ch.png" alt="Nasha Gazeta"></div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
