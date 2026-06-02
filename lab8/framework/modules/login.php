@@ -1,13 +1,16 @@
 <?php
+require_once __DIR__ . '/../scripts/db.php';
+
 function login_get($request) {
     return theme('login', []);
 }
 
 function login_post($request) {
+    global $db;
+    
     $login = trim($request['post']['login'] ?? '');
     $password = $request['post']['password'] ?? '';
     
-    global $db;
     $stmt = $db->prepare("SELECT id, login, password_hash FROM form_users WHERE login = ?");
     $stmt->execute([$login]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);

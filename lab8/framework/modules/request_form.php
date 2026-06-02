@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../scripts/db.php';
 require_once __DIR__ . '/../scripts/validation.php';
 
 function request_form_get($request) {
