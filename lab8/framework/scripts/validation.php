@@ -42,6 +42,7 @@ function save_request($data, $user = null) {
         if ($user) {
             $stmt = $db->prepare("UPDATE form_requests SET name=?, phone=?, email=?, comment=?, agreement=? WHERE user_id=?");
             $stmt->execute([$name, $phone, $email, $comment, $agreement, $user['id']]);
+            $db->commit();
             return ['login' => $user['login']];
         } else {
             $login = 'user_' . substr(md5(uniqid(rand(), true)), 0, 8);
