@@ -3,7 +3,10 @@ require_once __DIR__ . '/../scripts/db.php';
 require_once __DIR__ . '/../scripts/validation.php';
 
 function request_form_get($request) {
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    
     if (!empty($_SESSION['login']) && !empty($_SESSION['uid'])) {
         global $db;
         $stmt = $db->prepare("SELECT * FROM form_users WHERE id = ?");
@@ -32,6 +35,7 @@ function request_form_post($request) {
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
+    
     if (!empty($_SESSION['login']) && !empty($_SESSION['uid'])) {
         global $db;
         $stmt = $db->prepare("SELECT * FROM form_users WHERE id = ?");

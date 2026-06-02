@@ -6,6 +6,7 @@ function api_post($request) {
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
+    
     if (!empty($_SESSION['login']) && !empty($_SESSION['uid'])) {
         global $db;
         $stmt = $db->prepare("SELECT * FROM form_users WHERE id = ?");
